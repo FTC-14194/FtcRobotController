@@ -24,6 +24,8 @@ public class NerdsPipeline extends OpenCvPipeline
         //create HSV values for the low and high end of what is considered to be yellow
         Scalar lowHSV = new Scalar(20, 100, 100);
         Scalar highHSV = new Scalar(30, 255, 255);
+
+        return preview;
     }
 
     public int logicPos()
