@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous
+@Autonomous(name = "Shirley Blue Storage Unit")
 @SuppressWarnings({"unused"})
 public class AUTO_Shirley_Blue1 extends LinearOpMode
 {
