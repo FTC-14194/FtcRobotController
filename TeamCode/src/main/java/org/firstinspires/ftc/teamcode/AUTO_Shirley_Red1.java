@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -12,6 +13,7 @@ public class AUTO_Shirley_Red1 extends LinearOpMode
 {
     private DcMotor frontDrive, backDrive;
     private Servo rotateClaw, claw;
+    private CRServo carousel;
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override
@@ -21,6 +23,7 @@ public class AUTO_Shirley_Red1 extends LinearOpMode
         backDrive = hardwareMap.get(DcMotor.class, "backDrive");
         rotateClaw = hardwareMap.get(Servo.class, "rotateClaw");
         claw = hardwareMap.get(Servo.class, "claw");
+        carousel = hardwareMap.get(CRServo.class, "carousel");
 
         frontDrive.setDirection(DcMotor.Direction.REVERSE);
         backDrive.setDirection(DcMotor.Direction.FORWARD);
@@ -31,21 +34,63 @@ public class AUTO_Shirley_Red1 extends LinearOpMode
         waitForStart();
 
         //turn towards storage unit
-        frontDrive.setPower(-1.0);
-        backDrive.setPower(1.0);
+        frontDrive.setPower(-0.5);
+        backDrive.setPower(0.5);
         runtime.reset();
-        while(opModeIsActive() && runtime.seconds() < 0.175)
+        while(opModeIsActive() && runtime.seconds() < 0.1)
         {
             telemetry.update();
         }
         frontDrive.setPower(0.0);
         backDrive.setPower(0.0);
 
+        //line up with wall
+        frontDrive.setPower(1.0);
+        backDrive.setPower(1.0);
+        runtime.reset();
+        while(opModeIsActive() && runtime.seconds() < 1.6)
+        {
+            telemetry.update();
+        }
+        frontDrive.setPower(0.0);
+        backDrive.setPower(0.0);
+
+        //angle to line up with carousel
+        frontDrive.setPower(0.5);
+        backDrive.setPower(-0.5);
+        runtime.reset();
+        while(opModeIsActive() && runtime.seconds() < 0.50)
+        {
+            telemetry.update();
+        }
+        frontDrive.setPower(0.0);
+        backDrive.setPower(0.0);
+
+        //drive back to meet carousel
+        frontDrive.setPower(-0.5);
+        backDrive.setPower(-0.5);
+        runtime.reset();
+        while(opModeIsActive() && runtime.seconds() < 1.25)
+        {
+            telemetry.update();
+        }
+        frontDrive.setPower(0.0);
+        backDrive.setPower(0.0);
+
+        //spin the carousel
+        carousel.setPower(-1.0);
+        runtime.reset();
+        while(opModeIsActive() && runtime.seconds() < 10.00)
+        {
+            telemetry.update();
+        }
+        carousel.setPower(0.0);
+
         //drive "completely in" to storage unit
         frontDrive.setPower(1.0);
         backDrive.setPower(1.0);
         runtime.reset();
-        while(opModeIsActive() && runtime.seconds() < 1.45)
+        while(opModeIsActive() && runtime.seconds() < 0.6)
         {
             telemetry.update();
         }
