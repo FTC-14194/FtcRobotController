@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.shirley;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -6,9 +6,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name = "Shirley Red Warehouse")
+@Autonomous(name = "Shirley Blue Warehouse")
 @SuppressWarnings({"unused"})
-public class AUTO_Shirley_Red2 extends LinearOpMode
+public class AUTO_Shirley_Blue2 extends LinearOpMode
 {
     private DcMotor frontDrive, backDrive;
     private Servo rotateClaw, claw;
@@ -31,10 +31,10 @@ public class AUTO_Shirley_Red2 extends LinearOpMode
         waitForStart();
 
         //turn towards warehouse
-        frontDrive.setPower(1.0);
-        backDrive.setPower(-1.0);
+        frontDrive.setPower(-1.0);
+        backDrive.setPower(1.0);
         runtime.reset();
-        while(opModeIsActive() && runtime.seconds() < 0.45)
+        while(opModeIsActive() && runtime.seconds() < 0.3)
         {
             telemetry.update();
         }

@@ -1,15 +1,18 @@
-package org.firstinspires.ftc.teamcode;
+//Meet #1 @ Legacy HS 11/20/2021
+package org.firstinspires.ftc.teamcode.legacy;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+@Disabled
 @Autonomous(name = "Shirley Blue Storage Unit")
 @SuppressWarnings({"unused"})
-public class AUTO_Shirley_Blue1 extends LinearOpMode
+public class AUTO_Shirley_Blue_LEGACY extends LinearOpMode
 {
     private DcMotor frontDrive, backDrive;
     private Servo rotateClaw, claw;
@@ -47,7 +50,7 @@ public class AUTO_Shirley_Blue1 extends LinearOpMode
         frontDrive.setPower(1.0);
         backDrive.setPower(1.0);
         runtime.reset();
-        while(opModeIsActive() && runtime.seconds() < 1.80)
+        while(opModeIsActive() && runtime.seconds() < 1.45)//1.55
         {
             telemetry.update();
         }
@@ -70,6 +73,17 @@ public class AUTO_Shirley_Blue1 extends LinearOpMode
         backDrive.setPower(-0.5);
         runtime.reset();
         while(opModeIsActive() && runtime.seconds() < 2.55)
+        {
+            telemetry.update();
+        }
+        frontDrive.setPower(0.0);
+        backDrive.setPower(0.0);
+
+        //backwards adjustments
+        frontDrive.setPower(-0.1);
+        backDrive.setPower(-0.1);
+        runtime.reset();
+        while(opModeIsActive() && runtime.seconds() < 0.50)
         {
             telemetry.update();
         }
@@ -100,7 +114,7 @@ public class AUTO_Shirley_Blue1 extends LinearOpMode
         frontDrive.setPower(1.0);
         backDrive.setPower(1.0);
         runtime.reset();
-        while(opModeIsActive() && runtime.seconds() < 0.7)
+        while(opModeIsActive() && runtime.seconds() < 0.6)
         {
             telemetry.update();
         }

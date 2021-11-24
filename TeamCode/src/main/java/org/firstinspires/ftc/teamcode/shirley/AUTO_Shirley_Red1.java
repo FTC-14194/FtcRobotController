@@ -1,13 +1,14 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.shirley;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name = "Shirley Red Storage Unit")
+@Autonomous(name = "Shirley Red Storage Unit BASE")
 @SuppressWarnings({"unused"})
 public class AUTO_Shirley_Red1 extends LinearOpMode
 {
@@ -70,7 +71,7 @@ public class AUTO_Shirley_Red1 extends LinearOpMode
         frontDrive.setPower(-0.5);
         backDrive.setPower(-0.5);
         runtime.reset();
-        while(opModeIsActive() && runtime.seconds() < 1.25)
+        while(opModeIsActive() && runtime.seconds() < 1.30)
         {
             telemetry.update();
         }
