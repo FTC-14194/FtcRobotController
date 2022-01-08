@@ -12,7 +12,7 @@ import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.tel
 @SuppressWarnings({"unused"})
 public class Shirley extends OpMode
 {
-    private DcMotor frontDrive, backDrive;
+    private DcMotor frontDrive, backDrive, raiseClaw;
     private Servo rotateClaw, claw;
     private CRServo carousel;
 
@@ -21,12 +21,14 @@ public class Shirley extends OpMode
     {
         frontDrive = hardwareMap.get(DcMotor.class, "frontDrive");
         backDrive = hardwareMap.get(DcMotor.class, "backDrive");
+        raiseClaw = hardwareMap.get(DcMotor.class, "raiseClaw");
         rotateClaw = hardwareMap.get(Servo.class, "rotateClaw");
         claw = hardwareMap.get(Servo.class, "claw");
         carousel = hardwareMap.get(CRServo.class, "carousel");
 
         frontDrive.setDirection(DcMotor.Direction.FORWARD);
         backDrive.setDirection(DcMotor.Direction.REVERSE);
+        raiseClaw.setDirection(DcMotor.Direction.FORWARD);
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -40,23 +42,37 @@ public class Shirley extends OpMode
         backDrive.setPower(gamepad1.right_stick_y);
 
         //claw rotation
-        if (gamepad1.a) //tilt up
+        if (gamepad1.a) //tilt down
         {
-            rotateClaw.setPosition(0.2);
+            rotateClaw.setPosition(0.5);
         }
-        else if (gamepad1.b) //tilt down
+        else if (gamepad1.b) //tilt up
         {
-            rotateClaw.setPosition(0.515);
+            rotateClaw.setPosition(1.0);
         }
 
         //claw grabbing
         if (gamepad1.x) //open claw
         {
-            claw.setPosition(0.7);
+            claw.setPosition(0.5);
         }
         else if (gamepad1.y) //close claw
         {
             claw.setPosition(1.0);
+        }
+
+        //raise and lower claw
+        if (gamepad1.dpad_up) //raise
+        {
+            raiseClaw.setPower(1.0);
+        }
+        else if (gamepad1.dpad_down) //lower
+        {
+            raiseClaw.setPower(-1.0);
+        }
+        else //turn off power
+        {
+            raiseClaw.setPower(0.0);
         }
 
         //carousel spinning
