@@ -44,7 +44,7 @@ public class Shirley extends OpMode
         //claw rotation
         if (gamepad1.a) //tilt down
         {
-            rotateClaw.setPosition(0.5);
+            rotateClaw.setPosition(0.6);
         }
         else if (gamepad1.b) //tilt up
         {
