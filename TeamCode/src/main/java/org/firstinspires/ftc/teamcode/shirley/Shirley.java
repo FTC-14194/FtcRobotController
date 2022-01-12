@@ -30,6 +30,9 @@ public class Shirley extends OpMode
         backDrive.setDirection(DcMotor.Direction.REVERSE);
         raiseClaw.setDirection(DcMotor.Direction.FORWARD);
 
+        rotateClaw.setPosition(1.0);
+        claw.setPosition(1.0);
+
         telemetry.addData("Status", "Initialized");
         telemetry.update();
     }
