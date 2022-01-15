@@ -36,14 +36,28 @@ public class AUTO_Shirley_Red1 extends LinearOpMode
 
         waitForStart();
 
+        //initialize claw
         rotateClaw.setPosition(1.0);
         claw.setPosition(1.0);
+
+        //move awy from wall
+        frontDrive.setPower(0.5);
+        backDrive.setPower(0.5);
+        runtime.reset();
+        while(opModeIsActive() && runtime.seconds() < 0.2)
+        {
+            telemetry.update();
+        }
+        frontDrive.setPower(0.0);
+        backDrive.setPower(0.0);
+
+        while(opModeIsActive() && runtime.seconds() < 0.5) telemetry.update();//pause
 
         //turn towards storage unit
         frontDrive.setPower(-0.5);
         backDrive.setPower(0.5);
         runtime.reset();
-        while(opModeIsActive() && runtime.seconds() < 0.1)
+        while(opModeIsActive() && runtime.seconds() < 0.2)
         {
             telemetry.update();
         }
@@ -54,7 +68,7 @@ public class AUTO_Shirley_Red1 extends LinearOpMode
         frontDrive.setPower(1.0);
         backDrive.setPower(1.0);
         runtime.reset();
-        while(opModeIsActive() && runtime.seconds() < 1.6)
+        while(opModeIsActive() && runtime.seconds() < 1.7)//previously 1.6,1.65
         {
             telemetry.update();
         }
@@ -65,7 +79,7 @@ public class AUTO_Shirley_Red1 extends LinearOpMode
         frontDrive.setPower(0.5);
         backDrive.setPower(-0.5);
         runtime.reset();
-        while(opModeIsActive() && runtime.seconds() < 0.50)
+        while(opModeIsActive() && runtime.seconds() < 0.55)//previously 0.5
         {
             telemetry.update();
         }
@@ -76,7 +90,7 @@ public class AUTO_Shirley_Red1 extends LinearOpMode
         frontDrive.setPower(-0.5);
         backDrive.setPower(-0.5);
         runtime.reset();
-        while(opModeIsActive() && runtime.seconds() < 1.30)
+        while(opModeIsActive() && runtime.seconds() < 2.6)//previously 1.3,1.7,2.0,2.3
         {
             telemetry.update();
         }
@@ -84,19 +98,23 @@ public class AUTO_Shirley_Red1 extends LinearOpMode
         backDrive.setPower(0.0);
 
         //spin the carousel
-        carousel.setPower(-1.0);
+        frontDrive.setPower(-0.1);
+        backDrive.setPower(-0.1);
+        carousel.setPower(1.0);
         runtime.reset();
         while(opModeIsActive() && runtime.seconds() < 10.00)
         {
             telemetry.update();
         }
         carousel.setPower(0.0);
+        frontDrive.setPower(0.0);
+        backDrive.setPower(0.0);
 
         //drive "completely in" to storage unit
         frontDrive.setPower(1.0);
         backDrive.setPower(1.0);
         runtime.reset();
-        while(opModeIsActive() && runtime.seconds() < 0.6)
+        while(opModeIsActive() && runtime.seconds() < 0.75)//previously 0.6
         {
             telemetry.update();
         }

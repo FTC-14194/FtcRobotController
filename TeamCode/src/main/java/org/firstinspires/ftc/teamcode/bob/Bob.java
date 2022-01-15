@@ -10,8 +10,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 @SuppressWarnings({"unused"})
 public class Bob extends OpMode
 {
-    private DcMotor driveRF, driveRB, driveLF, driveLB;
-    private Servo leftArm, rightArm;
+    private DcMotor driveRF, driveRB, driveLF, driveLB, liftRight, liftLeft, intake;
+    private Servo dropIntake;
 
     @Override
     public void init()
@@ -20,15 +20,19 @@ public class Bob extends OpMode
         driveRB = hardwareMap.get(DcMotor.class, "driveRB");
         driveLF = hardwareMap.get(DcMotor.class, "driveLF");
         driveLB = hardwareMap.get(DcMotor.class, "driveLB");
-        leftArm= hardwareMap.get(Servo.class, "leftArm");
-        rightArm = hardwareMap.get(Servo.class, "rightArm");
+        liftRight = hardwareMap.get(DcMotor.class, "liftRight");
+        liftLeft = hardwareMap.get(DcMotor.class, "liftLeft");
+        intake = hardwareMap.get(DcMotor.class, "intake");
+        dropIntake = hardwareMap.get(Servo.class, "dropIntake");
 
         driveRF.setDirection(DcMotor.Direction.FORWARD);
         driveRB.setDirection(DcMotor.Direction.FORWARD);
         driveLF.setDirection(DcMotor.Direction.REVERSE);
         driveLB.setDirection(DcMotor.Direction.REVERSE);
-        leftArm.setDirection(Servo.Direction.REVERSE);
-        rightArm.setDirection(Servo.Direction.FORWARD);
+        liftRight.setDirection(DcMotor.Direction.FORWARD);
+        liftLeft.setDirection(DcMotor.Direction.FORWARD);
+        intake.setDirection(DcMotor.Direction.FORWARD);
+        dropIntake.setDirection(Servo.Direction.FORWARD);
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -42,14 +46,51 @@ public class Bob extends OpMode
         yPow = gamepad1.left_stick_y;
         rxPow = gamepad1.right_stick_x;
 
-        //give power to drive train (mecanum wheel movement)
-        driveRF.setPower(yPow - xPow -rxPow);
+        //power to drive train (mecanum wheel movement)
+        driveRF.setPower(yPow - xPow - rxPow);
         driveRB.setPower(yPow + xPow - rxPow);
         driveLF.setPower(yPow + xPow + rxPow);
         driveLB.setPower(yPow - xPow + rxPow);
 
-        //maneuver front arms to sift through cargo
-        leftArm.setPosition(gamepad1.left_trigger/2);
-        rightArm.setPosition(gamepad1.right_trigger/2);
+        //servo to rotate intake up and down
+        if(gamepad1.a) //up
+        {
+           dropIntake.setPosition(0.2);
+        }
+        else if (gamepad1.b) //down
+        {
+            dropIntake.setPosition(0.7);
+        }
+
+        //power linear slide to raise and lower intake
+        if (gamepad1.right_trigger > 0) //expand linear slides
+        {
+            liftRight.setPower(gamepad1.right_trigger/2);
+            liftLeft.setPower(gamepad1.right_trigger/2);
+        }
+        else if (gamepad1.left_trigger > 0) //contract linear slides
+        {
+            liftRight.setPower(-gamepad1.left_trigger/2);
+            liftLeft.setPower(-gamepad1.left_trigger/2);
+        }
+        else //supply no power to motors
+        {
+            liftRight.setPower(0.2);
+            liftRight.setPower(0.2);
+        }
+
+        //power intake mechanism to grab and release cargo
+        if (gamepad1.right_bumper) //take in cargo
+        {
+            intake.setPower(1.0 * 0.15);
+        }
+        else if (gamepad1.left_bumper) //release cargo
+        {
+            intake.setPower(-1.0 * 0.15);
+        }
+        else //supply no power to motor
+        {
+            intake.setPower(0.0);
+        }
     }
 }
