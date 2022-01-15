@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @SuppressWarnings({"unused"})
 public class AUTO_Shirley_Red1 extends LinearOpMode
 {
-    private DcMotor frontDrive, backDrive;
+    private DcMotor frontDrive, backDrive, raiseClaw;
     private Servo rotateClaw, claw;
     private CRServo carousel;
     private ElapsedTime runtime = new ElapsedTime();
@@ -22,17 +22,22 @@ public class AUTO_Shirley_Red1 extends LinearOpMode
     {
         frontDrive = hardwareMap.get(DcMotor.class, "frontDrive");
         backDrive = hardwareMap.get(DcMotor.class, "backDrive");
+        raiseClaw = hardwareMap.get(DcMotor.class, "raiseClaw");
         rotateClaw = hardwareMap.get(Servo.class, "rotateClaw");
         claw = hardwareMap.get(Servo.class, "claw");
         carousel = hardwareMap.get(CRServo.class, "carousel");
 
         frontDrive.setDirection(DcMotor.Direction.REVERSE);
         backDrive.setDirection(DcMotor.Direction.FORWARD);
+        raiseClaw.setDirection(DcMotor.Direction.FORWARD);
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
         waitForStart();
+
+        rotateClaw.setPosition(1.0);
+        claw.setPosition(1.0);
 
         //turn towards storage unit
         frontDrive.setPower(-0.5);
