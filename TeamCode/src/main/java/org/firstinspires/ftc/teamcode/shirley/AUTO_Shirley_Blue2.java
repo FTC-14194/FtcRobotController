@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.shirley;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -12,6 +13,7 @@ public class AUTO_Shirley_Blue2 extends LinearOpMode
 {
     private DcMotor frontDrive, backDrive;
     private Servo rotateClaw, claw;
+    private CRServo carousel;
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override
@@ -20,6 +22,7 @@ public class AUTO_Shirley_Blue2 extends LinearOpMode
         frontDrive = hardwareMap.get(DcMotor.class, "frontDrive");
         backDrive = hardwareMap.get(DcMotor.class, "backDrive");
         rotateClaw = hardwareMap.get(Servo.class, "rotateClaw");
+        carousel = hardwareMap.get(CRServo.class, "carousel");
         claw = hardwareMap.get(Servo.class, "claw");
 
         frontDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -34,7 +37,7 @@ public class AUTO_Shirley_Blue2 extends LinearOpMode
         frontDrive.setPower(-1.0);
         backDrive.setPower(1.0);
         runtime.reset();
-        while(opModeIsActive() && runtime.seconds() < 0.3)
+        while(opModeIsActive() && runtime.seconds() < 0.4)//prev 0.35
         {
             telemetry.update();
         }

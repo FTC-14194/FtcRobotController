@@ -30,7 +30,7 @@ public class Shirley extends OpMode
         backDrive.setDirection(DcMotor.Direction.REVERSE);
         raiseClaw.setDirection(DcMotor.Direction.FORWARD);
 
-        rotateClaw.setPosition(1.0);
+        rotateClaw.setPosition(0.75);
         claw.setPosition(1.0);
 
         telemetry.addData("Status", "Initialized");
@@ -45,13 +45,13 @@ public class Shirley extends OpMode
         backDrive.setPower(gamepad1.right_stick_y);
 
         //claw rotation
-        if (gamepad1.a) //tilt down
+        if (gamepad1.a) //tilt up
         {
-            rotateClaw.setPosition(0.6);
+            rotateClaw.setPosition(0.75);
         }
-        else if (gamepad1.b) //tilt up
+        else if (gamepad1.b) //tilt down
         {
-            rotateClaw.setPosition(1.0);
+            rotateClaw.setPosition(0.425);
         }
 
         //claw grabbing

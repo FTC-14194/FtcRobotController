@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 @SuppressWarnings({"unused"})
 public class Bob extends OpMode
 {
-    private DcMotor driveRF, driveRB, driveLF, driveLB, liftRight, liftLeft, intake;
+    private DcMotor driveRF, driveRB, driveLF, driveLB, liftRight, liftLeft, intakeLeft, intakeRight;
     private Servo dropIntake;
 
     @Override
@@ -22,7 +22,8 @@ public class Bob extends OpMode
         driveLB = hardwareMap.get(DcMotor.class, "driveLB");
         liftRight = hardwareMap.get(DcMotor.class, "liftRight");
         liftLeft = hardwareMap.get(DcMotor.class, "liftLeft");
-        intake = hardwareMap.get(DcMotor.class, "intake");
+        intakeLeft = hardwareMap.get(DcMotor.class, "intakeLeft");
+        intakeRight = hardwareMap.get(DcMotor.class, "intakeRight");
         dropIntake = hardwareMap.get(Servo.class, "dropIntake");
 
         driveRF.setDirection(DcMotor.Direction.FORWARD);
@@ -31,7 +32,8 @@ public class Bob extends OpMode
         driveLB.setDirection(DcMotor.Direction.REVERSE);
         liftRight.setDirection(DcMotor.Direction.FORWARD);
         liftLeft.setDirection(DcMotor.Direction.FORWARD);
-        intake.setDirection(DcMotor.Direction.FORWARD);
+        intakeLeft.setDirection(DcMotor.Direction.FORWARD);
+        intakeRight.setDirection(DcMotor.Direction.FORWARD);
         dropIntake.setDirection(Servo.Direction.FORWARD);
 
         telemetry.addData("Status", "Initialized");
@@ -82,15 +84,18 @@ public class Bob extends OpMode
         //power intake mechanism to grab and release cargo
         if (gamepad1.right_bumper) //take in cargo
         {
-            intake.setPower(1.0 * 0.15);
+            intakeLeft.setPower(1.0);
+            intakeRight.setPower(-1.0);
         }
         else if (gamepad1.left_bumper) //release cargo
         {
-            intake.setPower(-1.0 * 0.15);
+            intakeLeft.setPower(-1.0);
+            intakeRight.setPower(1.0);
         }
         else //supply no power to motor
         {
-            intake.setPower(0.0);
+            intakeLeft.setPower(0.0);
+            intakeRight.setPower(0.0);
         }
     }
 }

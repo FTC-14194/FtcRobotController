@@ -34,11 +34,11 @@ public class AUTO_Shirley_Red1 extends LinearOpMode
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-        waitForStart();
-
         //initialize claw
-        rotateClaw.setPosition(1.0);
+        rotateClaw.setPosition(0.75);
         claw.setPosition(1.0);
+
+        waitForStart();
 
         //move awy from wall
         frontDrive.setPower(0.5);
@@ -98,7 +98,7 @@ public class AUTO_Shirley_Red1 extends LinearOpMode
         backDrive.setPower(0.0);
 
         //spin the carousel
-        frontDrive.setPower(-0.1);
+        //frontDrive.setPower(-0.1);
         backDrive.setPower(-0.1);
         carousel.setPower(1.0);
         runtime.reset();
@@ -107,7 +107,7 @@ public class AUTO_Shirley_Red1 extends LinearOpMode
             telemetry.update();
         }
         carousel.setPower(0.0);
-        frontDrive.setPower(0.0);
+        //frontDrive.setPower(0.0);
         backDrive.setPower(0.0);
 
         //drive "completely in" to storage unit
