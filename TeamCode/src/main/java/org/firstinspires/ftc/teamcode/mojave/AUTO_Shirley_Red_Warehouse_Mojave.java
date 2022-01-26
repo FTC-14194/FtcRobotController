@@ -1,16 +1,15 @@
-package org.firstinspires.ftc.teamcode.shirley;
+package org.firstinspires.ftc.teamcode.mojave;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
-@Disabled
-@Autonomous(name = "Shirley Blue Warehouse")
+
+@Autonomous(name = "Shirley Red Warehouse Mojave")
 @SuppressWarnings({"unused"})
-public class AUTO_Shirley_Blue2 extends LinearOpMode
+public class AUTO_Shirley_Red_Warehouse_Mojave extends LinearOpMode
 {
     private DcMotor frontDrive, backDrive;
     private Servo rotateClaw, claw;
@@ -23,8 +22,8 @@ public class AUTO_Shirley_Blue2 extends LinearOpMode
         frontDrive = hardwareMap.get(DcMotor.class, "frontDrive");
         backDrive = hardwareMap.get(DcMotor.class, "backDrive");
         rotateClaw = hardwareMap.get(Servo.class, "rotateClaw");
-        carousel = hardwareMap.get(CRServo.class, "carousel");
         claw = hardwareMap.get(Servo.class, "claw");
+        carousel = hardwareMap.get(CRServo.class, "carousel");
 
         frontDrive.setDirection(DcMotor.Direction.REVERSE);
         backDrive.setDirection(DcMotor.Direction.FORWARD);
@@ -32,13 +31,17 @@ public class AUTO_Shirley_Blue2 extends LinearOpMode
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
+        //initialize claw
+        rotateClaw.setPosition(0.75);
+        claw.setPosition(1.0);
+
         waitForStart();
 
         //turn towards warehouse
-        frontDrive.setPower(-1.0);
-        backDrive.setPower(1.0);
+        frontDrive.setPower(1.0);
+        backDrive.setPower(-1.0);
         runtime.reset();
-        while(opModeIsActive() && runtime.seconds() < 0.4)//prev 0.35
+        while(opModeIsActive() && runtime.seconds() < 0.4)//0.35
         {
             telemetry.update();
         }

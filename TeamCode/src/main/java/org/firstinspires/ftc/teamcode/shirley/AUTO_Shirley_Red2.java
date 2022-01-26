@@ -1,12 +1,13 @@
 package org.firstinspires.ftc.teamcode.shirley;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
+@Disabled
 @Autonomous(name = "Shirley Red Warehouse")
 @SuppressWarnings({"unused"})
 public class AUTO_Shirley_Red2 extends LinearOpMode
