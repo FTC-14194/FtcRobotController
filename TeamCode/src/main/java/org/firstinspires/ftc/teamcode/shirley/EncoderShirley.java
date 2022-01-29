@@ -15,7 +15,7 @@ import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.tel
 
 @TeleOp
 @SuppressWarnings({"unused"})
-public class Shirley extends OpMode
+public class EncoderShirley extends OpMode
 {
     private DcMotor frontDrive, backDrive, raiseClaw;
     private Servo rotateClaw, claw;
