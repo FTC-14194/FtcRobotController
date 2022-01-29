@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
+@Disabled
 @Autonomous(name = "Shirley Blue Storage Unit Mojave")
 @SuppressWarnings({"unused"})
 public class AUTO_Shirley_Blue_Storage_Mojave extends LinearOpMode

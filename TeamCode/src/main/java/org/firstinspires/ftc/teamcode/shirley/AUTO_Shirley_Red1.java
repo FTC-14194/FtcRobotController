@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
-@Disabled
+
 @Autonomous(name = "Shirley Red Storage Unit BASE")
 @SuppressWarnings({"unused"})
 public class AUTO_Shirley_Red1 extends LinearOpMode

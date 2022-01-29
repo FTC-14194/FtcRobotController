@@ -1,10 +1,15 @@
 package org.firstinspires.ftc.teamcode.shirley;
 
+import com.qualcomm.hardware.rev.RevColorSensorV3;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
+
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 
@@ -15,6 +20,13 @@ public class Shirley extends OpMode
     private DcMotor frontDrive, backDrive, raiseClaw;
     private Servo rotateClaw, claw;
     private CRServo carousel;
+    private RevColorSensorV3 colorSens;
+
+    private int red = 0;
+    private int green = 0;
+    private int blue = 0;
+    private double distance = 0.0;
+    private boolean flag = false;
 
     @Override
     public void init()
@@ -25,7 +37,9 @@ public class Shirley extends OpMode
         rotateClaw = hardwareMap.get(Servo.class, "rotateClaw");
         claw = hardwareMap.get(Servo.class, "claw");
         carousel = hardwareMap.get(CRServo.class, "carousel");
+        colorSens = hardwareMap.get(RevColorSensorV3.class, "colorSens");
 
+        //frontDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         frontDrive.setDirection(DcMotor.Direction.FORWARD);
         backDrive.setDirection(DcMotor.Direction.REVERSE);
         raiseClaw.setDirection(DcMotor.Direction.FORWARD);
@@ -40,6 +54,35 @@ public class Shirley extends OpMode
     @Override
     public void loop()
     {
+        //Encoder Test
+
+        //frontDrive.setTargetPosition(200);
+        //frontDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+
+        //variables for color sensor
+        red = colorSens.red();
+        green = colorSens.green();
+        blue = colorSens.blue();
+        distance = colorSens.getDistance(DistanceUnit.CM);
+
+        if (13.5 < distance && distance < 15.3)
+        {
+            if (30 < red && red < 60 && 50 < green && green < 90 && 30 < blue && blue < 60)
+            {
+                flag = true;
+            }
+            else
+            {
+                flag = false;
+            }
+        }
+        else
+        {
+            flag = false;
+        }
+
+
         //driving
         frontDrive.setPower(gamepad1.left_stick_y);
         backDrive.setPower(gamepad1.right_stick_y);
@@ -93,6 +136,11 @@ public class Shirley extends OpMode
         }
 
         telemetry.addData("Status", "Running");
+        telemetry.addData("Red: ", red);
+        telemetry.addData("Green: ", green);
+        telemetry.addData("Blue: ", blue);
+        telemetry.addData("Distance: ", distance);
+        telemetry.addData("Flag: ", flag);
         telemetry.update();
     }
 }

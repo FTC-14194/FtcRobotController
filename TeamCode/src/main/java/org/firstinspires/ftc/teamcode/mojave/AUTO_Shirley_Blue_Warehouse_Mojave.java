@@ -1,12 +1,13 @@
 package org.firstinspires.ftc.teamcode.mojave;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
+@Disabled
 @Autonomous(name = "Shirley Blue Warehouse Mojave")
 @SuppressWarnings({"unused"})
 public class AUTO_Shirley_Blue_Warehouse_Mojave extends LinearOpMode
