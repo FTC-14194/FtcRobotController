@@ -8,7 +8,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name = "Shirley Blue Warehouse")
+@Disabled
+@Autonomous(name = "Shirley Blue Warehouse BASE")
 @SuppressWarnings({"unused"})
 public class AUTO_Shirley_Blue2 extends LinearOpMode
 {
@@ -31,6 +32,10 @@ public class AUTO_Shirley_Blue2 extends LinearOpMode
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
+
+        //initialize claw
+        rotateClaw.setPosition(0.75);
+        claw.setPosition(1.0);
 
         waitForStart();
 

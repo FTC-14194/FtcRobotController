@@ -1,5 +1,5 @@
 //Meet #1 @ Legacy HS 11/20/2021
-package org.firstinspires.ftc.teamcode.legacy;
+package org.firstinspires.ftc.teamcode.legacy1;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -10,9 +10,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Disabled
-@Autonomous(name = "Shirley Red Storage Unit")
+@Autonomous(name = "Shirley Blue Storage Unit")
 @SuppressWarnings({"unused"})
-public class AUTO_Shirley_Red_LEGACY extends LinearOpMode
+public class AUTO_Shirley_Blue_LEGACY extends LinearOpMode
 {
     private DcMotor frontDrive, backDrive;
     private Servo rotateClaw, claw;
@@ -37,21 +37,20 @@ public class AUTO_Shirley_Red_LEGACY extends LinearOpMode
         waitForStart();
 
         //turn towards storage unit
-        frontDrive.setPower(-0.5);
-        backDrive.setPower(0.5);
+        frontDrive.setPower(0.5);
+        backDrive.setPower(-0.5);
         runtime.reset();
-        while(opModeIsActive() && runtime.seconds() < 0.1)
+        while(opModeIsActive() && runtime.seconds() < 0.35)
         {
             telemetry.update();
         }
         frontDrive.setPower(0.0);
-        backDrive.setPower(0.0);
 
         //line up with wall
         frontDrive.setPower(1.0);
         backDrive.setPower(1.0);
         runtime.reset();
-        while(opModeIsActive() && runtime.seconds() < 1.6)
+        while(opModeIsActive() && runtime.seconds() < 1.45)//1.55
         {
             telemetry.update();
         }
@@ -59,10 +58,10 @@ public class AUTO_Shirley_Red_LEGACY extends LinearOpMode
         backDrive.setPower(0.0);
 
         //angle to line up with carousel
-        frontDrive.setPower(0.5);
-        backDrive.setPower(-0.5);
+        frontDrive.setPower(-0.5);
+        backDrive.setPower(0.5);
         runtime.reset();
-        while(opModeIsActive() && runtime.seconds() < 0.60)
+        while(opModeIsActive() && runtime.seconds() < 0.25)
         {
             telemetry.update();
         }
@@ -73,7 +72,7 @@ public class AUTO_Shirley_Red_LEGACY extends LinearOpMode
         frontDrive.setPower(-0.5);
         backDrive.setPower(-0.5);
         runtime.reset();
-        while(opModeIsActive() && runtime.seconds() < 1.20)
+        while(opModeIsActive() && runtime.seconds() < 2.55)
         {
             telemetry.update();
         }
@@ -92,13 +91,24 @@ public class AUTO_Shirley_Red_LEGACY extends LinearOpMode
         backDrive.setPower(0.0);
 
         //spin the carousel
-        carousel.setPower(-1.0);
+        carousel.setPower(1.0);
         runtime.reset();
         while(opModeIsActive() && runtime.seconds() < 10.00)
         {
             telemetry.update();
         }
         carousel.setPower(0.0);
+
+        //turn to line up with storage unit
+        frontDrive.setPower(0.5);
+        backDrive.setPower(-0.5);
+        runtime.reset();
+        while(opModeIsActive() && runtime.seconds() < 0.4)
+        {
+            telemetry.update();
+        }
+        frontDrive.setPower(0.0);
+        backDrive.setPower(0.0);
 
         //drive "completely in" to storage unit
         frontDrive.setPower(1.0);

@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+@Disabled
 @Autonomous(name = "Shirley Blue Storage Unit BASE")
 @SuppressWarnings({"unused"})
 public class AUTO_Shirley_Blue1 extends LinearOpMode
@@ -116,7 +117,7 @@ public class AUTO_Shirley_Blue1 extends LinearOpMode
         frontDrive.setPower(1.0);
         backDrive.setPower(0.5);
         runtime.reset();
-        while(opModeIsActive() && runtime.seconds() < 0.75)//previously 0.6
+        while(opModeIsActive() && runtime.seconds() < 0.85)//previously 0.6, 0.75
         {
             telemetry.update();
         }

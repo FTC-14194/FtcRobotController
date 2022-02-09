@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.camera;
 
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;

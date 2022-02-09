@@ -8,7 +8,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name = "Shirley Red Warehouse")
+@Disabled
+@Autonomous(name = "Shirley Red Warehouse BASE")
 @SuppressWarnings({"unused"})
 public class AUTO_Shirley_Red2 extends LinearOpMode
 {
