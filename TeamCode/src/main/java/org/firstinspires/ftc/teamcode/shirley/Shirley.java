@@ -14,6 +14,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 
+@Disabled
 @TeleOp
 @SuppressWarnings({"unused"})
 public class Shirley extends OpMode
