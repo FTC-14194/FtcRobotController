@@ -7,10 +7,10 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Autonomous(name = "Red Warehouse")
-public class ENCODER_AUTO_RW extends LinearOpMode
+@Autonomous(name = "Short Travel")
+public class ENCODER_AUTO_SHORT extends LinearOpMode
 {
-    //hardware
+    //hardware declaration
     private DcMotor driveR, driveL, slide, actuator;
     private Servo claw, rotateClaw;
     private CRServo carousel;
@@ -44,29 +44,16 @@ public class ENCODER_AUTO_RW extends LinearOpMode
 
         //play
 
-        //turn right
+        //move forward, completely in warehouse
         resetEncoders();
-        driveR.setTargetPosition(220);
-        driveL.setTargetPosition(-220);
+        driveR.setTargetPosition(-2000);
+        driveL.setTargetPosition(-2000);
         initEncoders();
-        driveR.setPower(0.5);
-        driveL.setPower(-0.5);
+        driveR.setPower(0.15);
+        driveL.setPower(0.15);
         while(driveR.isBusy() && opModeIsActive()) {
             telemetry.addData("driveR Position Check:", driveR.getCurrentPosition());
         }
-
-        //drive forward into warehouse
-        resetEncoders();
-        driveR.setTargetPosition(-2500);
-        driveL.setTargetPosition(-2500);
-        initEncoders();
-        driveR.setPower(-0.25);
-        driveL.setPower(-0.25);
-        while(driveR.isBusy() && opModeIsActive()) {
-            telemetry.addData("driveR Position Check:", driveR.getCurrentPosition());
-        }
-
-        resetEncoders();
     }
 
     //method to reset the drive-wheel encoders

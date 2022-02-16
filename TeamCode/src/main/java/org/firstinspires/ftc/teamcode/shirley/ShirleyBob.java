@@ -58,11 +58,11 @@ public class ShirleyBob extends OpMode
         }
 
         //claw rotation
-        if (gamepad1.a) //tilt up
+        if (gamepad1.b) //tilt up
         {
             rotateClaw.setPosition(0.0);
         }
-        else if (gamepad1.b) //tilt down
+        else if (gamepad1.a) //tilt down
         {
             rotateClaw.setPosition(0.45);
         }
@@ -96,11 +96,11 @@ public class ShirleyBob extends OpMode
         }
 
         //carousel
-        if (gamepad1.right_bumper)
+        if (gamepad1.right_bumper) //counterclockwise
         {
             carousel.setPower(1.0);
         }
-        else if (gamepad1.left_bumper)
+        else if (gamepad1.left_bumper) //clockwise
         {
             carousel.setPower(-1.0);
         }

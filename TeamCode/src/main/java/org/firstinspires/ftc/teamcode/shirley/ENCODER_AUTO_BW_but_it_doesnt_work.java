@@ -2,13 +2,15 @@ package org.firstinspires.ftc.teamcode.shirley;
 
 import com.qualcomm.hardware.rev.RevColorSensorV3;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Autonomous(name = "Blue Warehouse")
-public class ENCODER_AUTO_BW extends LinearOpMode
+@Disabled
+@Autonomous(name = "Blue Warehouse but it doesn't work")
+public class ENCODER_AUTO_BW_but_it_doesnt_work extends LinearOpMode
 {
     //hardware declaration
     private DcMotor driveR, driveL, slide, actuator;
@@ -49,64 +51,53 @@ public class ENCODER_AUTO_BW extends LinearOpMode
         driveR.setTargetPosition(-150);
         driveL.setTargetPosition(-150);
         initEncoders();
-        driveR.setPower(0.10);
-        driveL.setPower(0.10);
+        driveR.setPower(0.15);
+        driveL.setPower(0.15);
         while(driveR.isBusy() && opModeIsActive()) {
             telemetry.addData("driveR Position Check:", driveR.getCurrentPosition());
         }
 
         //turn right, face carousel
         resetEncoders();
-        driveR.setTargetPosition(265);
-        driveL.setTargetPosition(-265);
+        driveR.setTargetPosition(300);
+        driveL.setTargetPosition(-300);
         initEncoders();
-        driveR.setPower(0.10);
-        driveL.setPower(-0.10);
+        driveR.setPower(0.15);
+        driveL.setPower(-0.15);
         while(driveR.isBusy() && opModeIsActive()) {
             telemetry.addData("driveR Position Check:", driveR.getCurrentPosition());
         }
 
         //move forward, line up with alliance shipping hub
         resetEncoders();
-        driveR.setTargetPosition(-600);
-        driveL.setTargetPosition(-600);
+        driveR.setTargetPosition(-650);
+        driveL.setTargetPosition(-650);
         initEncoders();
-        driveR.setPower(0.10);
-        driveL.setPower(0.10);
+        driveR.setPower(0.15);
+        driveL.setPower(0.15);
         while(driveR.isBusy() && opModeIsActive()) {
             telemetry.addData("driveR Position Check:", driveR.getCurrentPosition());
         }
 
         //turn left, face alliance shipping hub
         resetEncoders();
-        driveR.setTargetPosition(-260);
-        driveL.setTargetPosition(260);
+        driveR.setTargetPosition(-220);
+        driveL.setTargetPosition(220);
         initEncoders();
-        driveR.setPower(-0.10);
-        driveL.setPower(0.10);
+        driveR.setPower(-0.15);
+        driveL.setPower(0.15);
         while(driveR.isBusy() && opModeIsActive()) {
             telemetry.addData("driveR Position Check:", driveR.getCurrentPosition());
         }
 
         //move forward, lower claw, meet alliance shipping hub
-        rotateClaw.setPosition(0.40);
+        rotateClaw.setPosition(0.30);
         resetEncoders();
-        driveR.setTargetPosition(-400);
-        driveL.setTargetPosition(-400);
+        driveR.setTargetPosition(-500);
+        driveL.setTargetPosition(-500);
         initEncoders();
-        driveR.setPower(0.10);
-        driveL.setPower(0.10);
-        while(driveR.isBusy() && opModeIsActive()) {
-            telemetry.addData("driveR Position Check:", driveR.getCurrentPosition());
-        }
-
-        //move forward, into alliance shipping hub
-        resetEncoders();
-        driveR.setTargetPosition(-350);
-        driveL.setTargetPosition(-350);
-        initEncoders();
-        driveR.setPower(0.10);
-        driveL.setPower(0.10);
+        driveR.setPower(0.15);
+        driveL.setPower(0.15);
         while(driveR.isBusy() && opModeIsActive()) {
             telemetry.addData("driveR Position Check:", driveR.getCurrentPosition());
         }
@@ -119,8 +110,8 @@ public class ENCODER_AUTO_BW extends LinearOpMode
         driveR.setTargetPosition(800);
         driveL.setTargetPosition(800);
         initEncoders();
-        driveR.setPower(-0.10);
-        driveL.setPower(-0.10);
+        driveR.setPower(-0.15);
+        driveL.setPower(-0.15);
         while(driveR.isBusy() && opModeIsActive()) {
             telemetry.addData("driveR Position Check:", driveR.getCurrentPosition());
         }
@@ -132,8 +123,8 @@ public class ENCODER_AUTO_BW extends LinearOpMode
         driveR.setTargetPosition(-250);
         driveL.setTargetPosition(250);
         initEncoders();
-        driveR.setPower(-0.10);
-        driveL.setPower(0.10);
+        driveR.setPower(-0.15);
+        driveL.setPower(0.15);
         while(driveR.isBusy() && opModeIsActive()) {
             telemetry.addData("driveR Position Check:", driveR.getCurrentPosition());
         }
@@ -143,8 +134,8 @@ public class ENCODER_AUTO_BW extends LinearOpMode
         driveR.setTargetPosition(-2500);
         driveL.setTargetPosition(-2500);
         initEncoders();
-        driveR.setPower(0.10);
-        driveL.setPower(0.10);
+        driveR.setPower(0.15);
+        driveL.setPower(0.15);
         while(driveR.isBusy() && opModeIsActive()) {
             telemetry.addData("driveR Position Check:", driveR.getCurrentPosition());
         }

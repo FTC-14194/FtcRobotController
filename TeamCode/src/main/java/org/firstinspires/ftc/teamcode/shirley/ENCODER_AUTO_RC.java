@@ -6,15 +6,17 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name = "Blue Storage Unit")
-public class ENCODER_AUTO_BSU extends LinearOpMode
+@Autonomous(name = "Red Carousel")
+public class ENCODER_AUTO_RC extends LinearOpMode
 {
-    //hardware declaration
+    //hardware
     private DcMotor driveR, driveL, slide, actuator;
     private Servo claw, rotateClaw;
     private CRServo carousel;
     private RevColorSensorV3 colorSens;
+    private ElapsedTime runtime = new ElapsedTime();
 
     public void runOpMode() throws InterruptedException
     {
@@ -36,6 +38,7 @@ public class ENCODER_AUTO_BSU extends LinearOpMode
         //initialization
         claw.setPosition(1.0);
         rotateClaw.setPosition(0.0);
+        resetEncoders();
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -44,8 +47,40 @@ public class ENCODER_AUTO_BSU extends LinearOpMode
 
         //play
 
-        //
+        //move backward, against carousel
         resetEncoders();
+        driveR.setTargetPosition(1050);
+        driveL.setTargetPosition(1050);
+        initEncoders();
+        driveR.setPower(-0.15);
+        driveL.setPower(-0.15);
+        while(driveR.isBusy() && opModeIsActive()) {
+            telemetry.addData("driveR Position Check:", driveR.getCurrentPosition());
+        }
+
+        //spin carousel, deliver duck
+        carousel.setPower(1.0);
+        driveR.setPower(-0.05);
+        driveL.setPower(-0.05);
+        runtime.reset();
+        while(runtime.seconds() < 7.0 && opModeIsActive())
+        {
+            telemetry.addData("driveR Position Check:", driveR.getCurrentPosition());
+        }
+        carousel.setPower(0.0);
+        driveR.setPower(0.0);
+        driveL.setPower(0.0);
+
+        //move forward, completely in warehouse
+        resetEncoders();
+        driveR.setTargetPosition(-4000);
+        driveL.setTargetPosition(-4000);
+        initEncoders();
+        driveR.setPower(0.15);
+        driveL.setPower(0.15);
+        while(driveR.isBusy() && opModeIsActive()) {
+            telemetry.addData("driveR Position Check:", driveR.getCurrentPosition());
+        }
     }
 
     //method to reset the drive-wheel encoders
