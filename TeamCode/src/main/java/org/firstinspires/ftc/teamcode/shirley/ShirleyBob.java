@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 @SuppressWarnings({"unused"})
 public class ShirleyBob extends OpMode
 {
-    public DcMotor driveR, driveL, slide, actuator;
+    public DcMotor driveR, driveL, actuator;
     public Servo claw, rotateClaw;
     public CRServo carousel;
     public RevColorSensorV3 colorSens;
@@ -21,7 +21,6 @@ public class ShirleyBob extends OpMode
     {
         driveR = hardwareMap.get(DcMotor.class, "driveR");
         driveL = hardwareMap.get(DcMotor.class, "driveL");
-        slide = hardwareMap.get(DcMotor.class, "slide");
         actuator = hardwareMap.get(DcMotor.class, "actuator");
         claw = hardwareMap.get(Servo.class, "claw");
         rotateClaw = hardwareMap.get(Servo.class, "rotateClaw");
@@ -30,8 +29,8 @@ public class ShirleyBob extends OpMode
 
         driveR.setDirection(DcMotor.Direction.FORWARD);
         driveL.setDirection(DcMotor.Direction.REVERSE);
-        slide.setDirection(DcMotor.Direction.REVERSE);
         actuator.setDirection(DcMotor.Direction.FORWARD);
+        actuator.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         claw.setPosition(1.0);
         rotateClaw.setPosition(0.0);
@@ -48,46 +47,36 @@ public class ShirleyBob extends OpMode
         driveL.setPower(gamepad1.left_stick_y * 0.75);
 
         //claw grabbing
-        if (gamepad1.y) //open claw
+        if (gamepad1.a) //open claw
         {
-            claw.setPosition(0.5);
+            claw.setPosition(0.75);
         }
-        else if (gamepad1.x) //close claw
+        else if (gamepad1.b) //close claw
         {
             claw.setPosition(1.0);
         }
 
         //claw rotation
-        if (gamepad1.b) //tilt up
+        if (gamepad1.x) //rotate up
         {
             rotateClaw.setPosition(0.0);
         }
-        else if (gamepad1.a) //tilt down
+        else if (gamepad1.y) //rotate down
         {
-            rotateClaw.setPosition(0.45);
-        }
-
-        //slide (move actuator)
-        if (gamepad1.dpad_up) //expand slide
-        {
-            slide.setPower(0.75);
-        }
-        else if (gamepad1.dpad_down) //collapse slide
-        {
-            slide.setPower(-0.75);
-        }
-        else  //turn off power
-        {
-            slide.setPower(0.0);
+            rotateClaw.setPosition(0.325);
         }
 
         //actuator (move claw)
-        if (gamepad1.dpad_right) //raise
+        if (gamepad1.dpad_right && actuator.getCurrentPosition() < 5500) //raise
         {
+            actuator.setTargetPosition(5500);
+            actuator.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             actuator.setPower(0.75);
         }
-        else if (gamepad1.dpad_left) //lower
+        else if (gamepad1.dpad_left && actuator.getCurrentPosition() > 0) //lower
         {
+            actuator.setTargetPosition(0);
+            actuator.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             actuator.setPower(-0.75);
         }
         else //turn off power

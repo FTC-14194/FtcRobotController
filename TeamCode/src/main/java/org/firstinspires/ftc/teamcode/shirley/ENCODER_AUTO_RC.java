@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class ENCODER_AUTO_RC extends LinearOpMode
 {
     //hardware
-    private DcMotor driveR, driveL, slide, actuator;
+    private DcMotor driveR, driveL, actuator;
     private Servo claw, rotateClaw;
     private CRServo carousel;
     private RevColorSensorV3 colorSens;
@@ -23,7 +23,6 @@ public class ENCODER_AUTO_RC extends LinearOpMode
         //hardware assignment
         driveR = hardwareMap.get(DcMotor.class, "driveR");
         driveL = hardwareMap.get(DcMotor.class, "driveL");
-        slide = hardwareMap.get(DcMotor.class, "slide");
         actuator = hardwareMap.get(DcMotor.class, "actuator");
         claw = hardwareMap.get(Servo.class, "claw");
         rotateClaw = hardwareMap.get(Servo.class, "rotateClaw");
@@ -32,13 +31,11 @@ public class ENCODER_AUTO_RC extends LinearOpMode
 
         driveR.setDirection(DcMotor.Direction.FORWARD);
         driveL.setDirection(DcMotor.Direction.REVERSE);
-        slide.setDirection(DcMotor.Direction.FORWARD);
         actuator.setDirection(DcMotor.Direction.FORWARD);
 
         //initialization
         claw.setPosition(1.0);
         rotateClaw.setPosition(0.0);
-        resetEncoders();
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -60,16 +57,12 @@ public class ENCODER_AUTO_RC extends LinearOpMode
 
         //spin carousel, deliver duck
         carousel.setPower(1.0);
-        driveR.setPower(-0.05);
-        driveL.setPower(-0.05);
         runtime.reset();
         while(runtime.seconds() < 7.0 && opModeIsActive())
         {
             telemetry.addData("driveR Position Check:", driveR.getCurrentPosition());
         }
         carousel.setPower(0.0);
-        driveR.setPower(0.0);
-        driveL.setPower(0.0);
 
         //move forward, completely in warehouse
         resetEncoders();

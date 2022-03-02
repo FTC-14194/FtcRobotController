@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class ENCODER_AUTO_SHORT extends LinearOpMode
 {
     //hardware declaration
-    private DcMotor driveR, driveL, slide, actuator;
+    private DcMotor driveR, driveL, actuator;
     private Servo claw, rotateClaw;
     private CRServo carousel;
     private RevColorSensorV3 colorSens;
@@ -21,7 +21,6 @@ public class ENCODER_AUTO_SHORT extends LinearOpMode
         //hardware assignment
         driveR = hardwareMap.get(DcMotor.class, "driveR");
         driveL = hardwareMap.get(DcMotor.class, "driveL");
-        slide = hardwareMap.get(DcMotor.class, "slide");
         actuator = hardwareMap.get(DcMotor.class, "actuator");
         claw = hardwareMap.get(Servo.class, "claw");
         rotateClaw = hardwareMap.get(Servo.class, "rotateClaw");
@@ -30,7 +29,6 @@ public class ENCODER_AUTO_SHORT extends LinearOpMode
 
         driveR.setDirection(DcMotor.Direction.FORWARD);
         driveL.setDirection(DcMotor.Direction.REVERSE);
-        slide.setDirection(DcMotor.Direction.FORWARD);
         actuator.setDirection(DcMotor.Direction.FORWARD);
 
         //initialization
